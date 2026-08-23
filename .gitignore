@@ -1,9 +1,14 @@
+# Directories (trailing slash ensures only folders are ignored)
 datasets/
 docs/
 notebooks/
-*.pyc
-not_used_docs/
 screeners/
+not_used_docs/
+
+# Specific files
 critical_conditions.md
 Dockerfile
 folder_structure.md
+
+# Patterns
+*.pyc   
