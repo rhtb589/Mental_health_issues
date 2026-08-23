@@ -1,0 +1,9 @@
+datasets/
+docs/
+notebooks/
+*.pyc
+not_used_docs/
+screeners/
+critical_conditions.md
+Dockerfile
+folder_structure.md
