@@ -4,6 +4,8 @@ docs/
 notebooks/
 screeners/
 not_used_docs/
+database/
+
 
 # Specific files
 critical_conditions.md
