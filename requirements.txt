@@ -1,0 +1,8 @@
+langchain-community
+langchain-ollama 
+langchain-core 
+pydantic
+torch
+tensorflow
+pypdf
+chromadb

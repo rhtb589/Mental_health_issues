@@ -1,0 +1,512 @@
+# Mental Health Care - Condition & Care Workflow Registry
+# Version: 1.0
+#
+# PURPOSE:
+# Configuration blueprint linking each condition to:
+# education -> screening/assessment -> safety -> monitoring -> care -> follow-up.
+#
+# CLINICAL SAFETY:
+# - Screening does NOT establish a diagnosis.
+# - Diagnosis and treatment decisions require qualified clinical assessment.
+# - Safety/crisis workflows must be clinically reviewed before deployment.
+# - Do not prescribe medication or independently change medication/doses.
+# - Verify each instrument's population, language, licensing, administration and scoring
+#   requirements before implementation.
+
+version: "1.0"
+registry_type: "condition_care_workflow"
+clinical_review_required: true
+
+global_workflow:
+  steps:
+    - education
+    - identify_concerns
+    - applicable_screening_or_assessment
+    - safety_evaluation_when_indicated
+    - result_interpretation
+    - personalized_support
+    - daily_or_periodic_monitoring
+    - deterioration_or_relapse_detection
+    - professional_follow_up
+    - emergency_escalation_when_indicated
+
+global_rules:
+  diagnosis:
+    enabled: false
+    statement: "Questionnaire scores alone must never be presented as a diagnosis."
+
+  treatment:
+    prescribing: false
+    medication_changes: false
+
+  safety:
+    priority: "Safety workflows take priority over normal education/chat workflows."
+    human_review: true
+
+  provenance:
+    clinical_content: true
+    screening_results: true
+    ai_answers: true
+
+conditions:
+
+  depression:
+    name: "Depression"
+    procedure:
+      - "Provide education about symptoms and functional impact."
+      - "Identify changes in mood, interest, sleep, appetite, energy, concentration, self-care and functioning."
+      - "Administer an approved depressive-symptom screening instrument appropriate to the population."
+      - "Calculate scores using deterministic, version-controlled scoring."
+      - "If a safety concern is indicated, invoke the approved safety protocol."
+      - "Present results as screening/assessment results, not diagnosis."
+      - "Provide approved education and supportive resources."
+      - "Track mood, sleep, energy, appetite and functioning over time."
+      - "Detect meaningful change from the user's personal baseline when sufficient history exists."
+      - "Recommend professional follow-up for persistent, worsening or functionally impairing symptoms."
+    screening:
+      primary:
+        - id: "PHQ9"
+          purpose: "Depressive symptom screening/severity monitoring"
+          verification_required: true
+      supplementary:
+        - id: "PHQ4"
+          purpose: "Brief depression/anxiety symptom screening"
+          verification_required: true
+      safety:
+        - id: "CSSRS"
+          purpose: "Suicide-risk assessment when clinically indicated"
+          verification_required: true
+      diagnostic:
+        required: true
+        method: "Qualified clinical assessment"
+    monitoring:
+      - mood
+      - interest_or_pleasure
+      - sleep
+      - appetite
+      - energy
+      - concentration
+      - self_care
+      - functioning
+    care_workflow:
+      - education
+      - screening
+      - safety_assessment_if_indicated
+      - symptom_monitoring
+      - caregiver_support_if_applicable
+      - professional_follow_up
+      - relapse_prevention
+
+  anxiety_disorders:
+    name: "Anxiety Disorders"
+    procedure:
+      - "Provide education about anxiety symptoms and functional impact."
+      - "Identify worry, fear, restlessness, tension, sleep disruption and concentration problems."
+      - "Use an approved anxiety screening instrument appropriate to the population."
+      - "Calculate scores using the approved instrument version."
+      - "Trigger safety assessment when clinically indicated."
+      - "Explain that screening does not establish an anxiety-disorder diagnosis."
+      - "Provide approved coping, relaxation, sleep and stress-management resources."
+      - "Track anxiety, stress/triggers, sleep and functioning."
+      - "Recommend professional assessment for persistent, severe or impairing symptoms."
+    screening:
+      primary:
+        - id: "GAD7"
+          purpose: "Anxiety symptom screening/severity monitoring"
+          verification_required: true
+      supplementary:
+        - id: "PHQ4"
+          purpose: "Brief anxiety/depression symptom screening"
+          verification_required: true
+      safety:
+        - id: "CSSRS"
+          purpose: "Suicide-risk assessment when clinically indicated"
+          verification_required: true
+      diagnostic:
+        required: true
+        method: "Qualified clinical assessment"
+    monitoring:
+      - anxiety
+      - worry
+      - stress
+      - sleep
+      - triggers
+      - functioning
+    care_workflow:
+      - education
+      - screening
+      - safety_assessment_if_indicated
+      - coping_support
+      - symptom_monitoring
+      - professional_follow_up
+
+  bipolar_disorder:
+    name: "Bipolar Disorder"
+    procedure:
+      - "Provide education about depressive and elevated/irritable mood episodes."
+      - "Identify changes in mood, sleep need, energy, activity, impulsivity and functioning."
+      - "If screening is offered, use a clinically reviewed bipolar-spectrum tool appropriate to the population."
+      - "Never interpret a positive screen as a bipolar diagnosis."
+      - "Assess approved safety indicators including suicidality, severe behavioral disturbance and possible psychosis."
+      - "Track sleep, mood, energy, activity and functioning over time."
+      - "Detect substantial deviation from the user's baseline rather than autonomously diagnosing mania/hypomania."
+      - "Support an individualized relapse-prevention and follow-up plan."
+      - "If medication is part of an existing plan, support adherence tracking only; do not change medication."
+    screening:
+      primary:
+        - id: "MDQ"
+          purpose: "Bipolar-spectrum symptom screening where clinically appropriate"
+          verification_required: true
+      supplementary: []
+      safety:
+        - id: "CSSRS"
+          purpose: "Suicide-risk assessment when clinically indicated"
+          verification_required: true
+        - id: "PSYCHOSIS_SAFETY_PROTOCOL"
+          purpose: "Clinically approved psychosis/behavioral safety workflow"
+          verification_required: true
+      diagnostic:
+        required: true
+        method: "Comprehensive qualified clinical assessment"
+    monitoring:
+      - mood
+      - sleep_duration
+      - energy
+      - activity
+      - impulsivity
+      - functioning
+      - medication_adherence_if_applicable
+    care_workflow:
+      - education
+      - symptom_and_baseline_monitoring
+      - safety_assessment_if_indicated
+      - relapse_warning_monitoring
+      - caregiver_support_if_applicable
+      - professional_follow_up
+      - relapse_prevention
+
+  schizophrenia_spectrum:
+    name: "Schizophrenia Spectrum / Psychotic Disorders"
+    procedure:
+      - "Provide education about psychosis-related symptoms and functional changes."
+      - "Monitor approved early-warning indicators such as changes in sleep, functioning, self-care and behavior."
+      - "Use a clinically approved psychosis screening/assessment instrument only when appropriate to the deployment population."
+      - "Do not infer schizophrenia from a questionnaire or chatbot conversation."
+      - "Trigger the safety protocol for approved urgent indicators."
+      - "Support caregiver observation where consent permits."
+      - "Track medication adherence as a support metric when medication is part of an existing care plan; do not change medication."
+      - "Detect changes from baseline in sleep, functioning, self-care and behavior."
+      - "Route suspected deterioration to the approved professional-care pathway."
+    screening:
+      primary:
+        - id: "PSYCHOSIS_SCREENING_TOOL"
+          purpose: "Clinically approved psychosis-related screening where appropriate"
+          verification_required: true
+      supplementary: []
+      safety:
+        - id: "CSSRS"
+          purpose: "Suicide-risk assessment when clinically indicated"
+          verification_required: true
+        - id: "PSYCHOSIS_SAFETY_PROTOCOL"
+          purpose: "Urgent psychosis/behavioral safety workflow"
+          verification_required: true
+      diagnostic:
+        required: true
+        method: "Comprehensive psychiatric/clinical assessment"
+    monitoring:
+      - sleep
+      - self_care
+      - functioning
+      - social_withdrawal
+      - behavioral_change
+      - medication_adherence_if_applicable
+      - distress
+    care_workflow:
+      - education
+      - early_warning_monitoring
+      - caregiver_support_if_applicable
+      - safety_assessment_if_indicated
+      - professional_follow_up
+      - relapse_prevention
+
+  obsessive_compulsive_disorder:
+    name: "Obsessive-Compulsive Disorder"
+    procedure:
+      - "Provide education about obsessions, compulsions, avoidance and functional impact."
+      - "Identify intrusive thoughts/urges, repetitive behaviors, avoidance, distress and functional impact."
+      - "Use an approved OCD symptom screening instrument where appropriate."
+      - "Use clinical severity instruments only within their intended context."
+      - "Invoke safety assessment when clinically indicated."
+      - "Explain that screening does not establish an OCD diagnosis."
+      - "Track symptom distress, triggers, compulsions and functioning."
+      - "Provide approved educational and coping resources."
+      - "Encourage qualified professional assessment for persistent or impairing symptoms."
+    screening:
+      primary:
+        - id: "OCI_R"
+          purpose: "OCD symptom screening where appropriate"
+          verification_required: true
+      supplementary: []
+      severity:
+        - id: "YBOCS"
+          purpose: "Clinical OCD severity assessment"
+          verification_required: true
+      safety:
+        - id: "CSSRS"
+          purpose: "Suicide-risk assessment when clinically indicated"
+          verification_required: true
+      diagnostic:
+        required: true
+        method: "Qualified clinical assessment"
+    monitoring:
+      - obsessions
+      - compulsions
+      - distress
+      - avoidance
+      - functioning
+    care_workflow:
+      - education
+      - screening
+      - severity_assessment_when_clinically_appropriate
+      - safety_assessment_if_indicated
+      - symptom_monitoring
+      - professional_follow_up
+      - relapse_prevention
+
+  substance_use_disorder:
+    name: "Substance Use Disorder"
+    procedure:
+      - "Provide non-judgmental education about substance use, harms, treatment and recovery."
+      - "Identify substance type, frequency/pattern of use, craving, loss of control, consequences and functional impact."
+      - "Select a validated substance-use screening instrument based on substance type, age and setting."
+      - "Use substance-specific tools where appropriate."
+      - "Assess overdose, severe withdrawal, intoxication-related danger and suicidality when indicated."
+      - "Immediately route urgent safety concerns to the approved crisis/emergency workflow."
+      - "Track use patterns, cravings, triggers, sleep, stress and recovery goals where appropriate."
+      - "Support relapse-prevention planning and professional treatment/referral."
+      - "Do not provide instructions that facilitate harmful substance use."
+      - "Do not independently recommend withdrawal or dependence medication."
+    screening:
+      primary:
+        - id: "ASSIST"
+          purpose: "Substance-use screening where appropriate"
+          verification_required: true
+        - id: "AUDIT"
+          purpose: "Alcohol-use screening where appropriate"
+          verification_required: true
+      supplementary: []
+      severity:
+        - id: "CLINICAL_SUBSTANCE_USE_ASSESSMENT"
+          purpose: "Professional assessment of severity and functional impact"
+          verification_required: true
+      safety:
+        - id: "OVERDOSE_SAFETY_PROTOCOL"
+          purpose: "Urgent overdose/intoxication safety workflow"
+          verification_required: true
+        - id: "WITHDRAWAL_SAFETY_PROTOCOL"
+          purpose: "Urgent withdrawal-risk workflow"
+          verification_required: true
+        - id: "CSSRS"
+          purpose: "Suicide-risk assessment when clinically indicated"
+          verification_required: true
+      diagnostic:
+        required: true
+        method: "Qualified clinical assessment"
+    monitoring:
+      - substance_use_pattern
+      - craving
+      - triggers
+      - sleep
+      - stress
+      - functioning
+      - recovery_goal_progress
+    care_workflow:
+      - education
+      - substance_use_screening
+      - safety_assessment_if_indicated
+      - professional_referral
+      - recovery_monitoring
+      - relapse_prevention
+      - follow_up
+
+  dementia:
+    name: "Dementia / Cognitive Impairment"
+    procedure:
+      - "Provide education about cognitive and functional changes and caregiver support."
+      - "Identify memory, orientation, language, executive-function and daily-living changes."
+      - "Use an age/population-appropriate validated cognitive screening instrument when appropriate."
+      - "Assess functional ability and caregiver observations."
+      - "Assess safety concerns such as wandering, falls, medication errors and self-care difficulties."
+      - "Escalate acute or rapidly changing confusion through the appropriate clinical pathway rather than assuming dementia progression."
+      - "Track cognition, activities of daily living, sleep, behavior and caregiver observations."
+      - "Provide caregiver education, routines and safety-support resources."
+      - "Support professional follow-up and care-plan updates."
+      - "Maintain auditability of caregiver access and consent."
+    screening:
+      primary:
+        - id: "MOCA"
+          purpose: "Cognitive screening where appropriate"
+          verification_required: true
+        - id: "MMSE"
+          purpose: "Cognitive assessment where appropriate and permitted"
+          verification_required: true
+      supplementary:
+        - id: "FUNCTIONAL_ASSESSMENT"
+          purpose: "Activities-of-daily-living and functional assessment"
+          verification_required: true
+      severity:
+        - id: "CLINICAL_COGNITIVE_FUNCTIONAL_ASSESSMENT"
+          purpose: "Professional cognitive and functional assessment"
+          verification_required: true
+      safety:
+        - id: "CAREGIVER_SAFETY_ASSESSMENT"
+          purpose: "Wandering, falls, medication and self-care safety"
+          verification_required: true
+      diagnostic:
+        required: true
+        method: "Comprehensive medical/clinical assessment"
+    monitoring:
+      - cognition
+      - orientation
+      - activities_of_daily_living
+      - sleep
+      - behavior
+      - medication_support
+      - falls
+      - wandering
+      - caregiver_observation
+    care_workflow:
+      - education
+      - cognitive_assessment
+      - functional_assessment
+      - caregiver_onboarding
+      - safety_assessment
+      - daily_monitoring
+      - care_plan
+      - professional_follow_up
+
+  autism_spectrum_disorder:
+    name: "Autism Spectrum Disorder"
+    procedure:
+      - "Provide respectful, non-stigmatizing neurodevelopmental education."
+      - "Identify developmental, communication, social-interaction, repetitive-behavior and sensory characteristics appropriate to age."
+      - "Use only age- and population-appropriate validated developmental/autism screening tools."
+      - "Treat screening as identification of possible developmental characteristics, not diagnosis."
+      - "Assess functional/support needs and caregiver observations."
+      - "Assess context-specific safety concerns when applicable."
+      - "Track routines, sleep, sensory triggers, communication, functioning and caregiver observations where appropriate."
+      - "Provide support-needs, caregiver and educational resources."
+      - "Recommend professional developmental/clinical evaluation where indicated."
+      - "Personalize workflow to age, developmental stage and support needs."
+    screening:
+      primary:
+        - id: "AGE_APPROPRIATE_AUTISM_SCREEN"
+          purpose: "Developmental/autism screening appropriate to age and setting"
+          verification_required: true
+      supplementary: []
+      severity:
+        - id: "FUNCTIONAL_SUPPORT_NEEDS_ASSESSMENT"
+          purpose: "Assess functional and support needs"
+          verification_required: true
+      safety:
+        - id: "CONTEXT_SPECIFIC_SAFETY_ASSESSMENT"
+          purpose: "Assess applicable behavioral/environmental safety concerns"
+          verification_required: true
+      diagnostic:
+        required: true
+        method: "Comprehensive developmental/clinical assessment"
+    monitoring:
+      - routine
+      - sleep
+      - sensory_triggers
+      - communication
+      - distress
+      - self_care
+      - functioning
+      - caregiver_observation
+    care_workflow:
+      - education
+      - age_appropriate_screening
+      - support_needs_assessment
+      - caregiver_support
+      - safety_assessment_if_indicated
+      - routine_monitoring
+      - professional_follow_up
+
+  adhd:
+    name: "Attention-Deficit/Hyperactivity Disorder"
+    procedure:
+      - "Provide education about attention, hyperactivity, impulsivity and executive-function difficulties."
+      - "Identify symptoms across relevant settings and assess functional impact."
+      - "Use a validated ADHD screening instrument appropriate to age and population."
+      - "Do not diagnose ADHD from questionnaire scores alone."
+      - "Assess relevant safety/functional concerns when clinically indicated."
+      - "Track attention, task completion, routines, sleep and functional performance."
+      - "Support organization, routines and approved educational resources."
+      - "If medication is already prescribed, support adherence tracking but do not change medication or dosage."
+      - "Recommend professional assessment when symptoms are persistent or impairing."
+      - "Use follow-up monitoring to assess change in symptoms and functioning."
+    screening:
+      primary:
+        - id: "ASRS"
+          purpose: "Adult ADHD symptom screening where appropriate"
+          verification_required: true
+        - id: "AGE_APPROPRIATE_ADHD_SCREEN"
+          purpose: "Age-appropriate ADHD screening where applicable"
+          verification_required: true
+      supplementary: []
+      severity:
+        - id: "FUNCTIONAL_IMPAIRMENT_ASSESSMENT"
+          purpose: "Assess impact on daily functioning"
+          verification_required: true
+      safety:
+        - id: "CONTEXT_SPECIFIC_SAFETY_ASSESSMENT"
+          purpose: "Assess applicable impulsivity/functional safety concerns"
+          verification_required: true
+      diagnostic:
+        required: true
+        method: "Comprehensive qualified clinical assessment"
+    monitoring:
+      - attention
+      - task_completion
+      - sleep
+      - routine_adherence
+      - organization
+      - impulsivity
+      - functioning
+      - medication_adherence_if_applicable
+    care_workflow:
+      - education
+      - age_appropriate_screening
+      - functional_assessment
+      - safety_assessment_if_indicated
+      - routine_support
+      - symptom_monitoring
+      - professional_follow_up
+
+common_care_workflows:
+  education:
+    purpose: "Provide evidence-based, source-cited educational content."
+
+  screening:
+    purpose: "Administer only approved instruments applicable to the user's population."
+
+  safety_assessment:
+    purpose: "Identify approved urgent safety indicators."
+    priority: "higher_than_normal_chat_or_education"
+
+  monitoring:
+    purpose: "Track symptoms, functioning and user-defined goals over time."
+
+  trend_detection:
+    purpose: "Identify meaningful changes from a personal baseline."
+    output: "Signal for review, not a diagnosis."
+
+  professional_follow_up:
+    purpose: "Guide the user/caregiver toward appropriate professional care."
+
+  relapse_prevention:
+    purpose: "Support a clinically reviewed or user-created relapse-prevention plan."
+
+  emergency_escalation:
+    purpose: "Execute the clinically reviewed emergency/crisis pathway."

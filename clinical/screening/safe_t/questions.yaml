@@ -1,0 +1,262 @@
+instrument_id: "SAFE-T"
+
+instructions:
+  text: >
+    Follow the five steps: (1) Identify Risk Factors, (2) Identify
+    Protective Factors, (3) Specific questioning about Thoughts, Plans,
+    and Suicidal Intent using C-SSRS, (4) Determine Level of Risk and
+    develop interventions, (5) Documentation.
+
+sections:
+
+  step_1_risk_factors:
+    description: "Activating Events, Treatment History, Clinical Status."
+    response_type: "multi_choice"
+    items:
+
+      - id: "SAFE-T_RISK_ACTIVATING"
+        group: "Activating Events"
+        items:
+          - "Recent losses or other significant negative event(s) (legal, financial, relationship, etc.)"
+          - "Pending incarceration or homelessness"
+          - "Current or pending isolation or feeling alone"
+
+      - id: "SAFE-T_RISK_TREATMENT"
+        group: "Treatment History"
+        items:
+          - "Previous psychiatric diagnosis and treatments"
+          - "Hopeless or dissatisfied with treatment"
+          - "Non-compliant with treatment"
+          - "Not receiving treatment"
+          - "Insomnia"
+
+      - id: "SAFE-T_RISK_CLINICAL"
+        group: "Clinical Status"
+        items:
+          - "Hopelessness"
+          - "Major depressive episode"
+          - "Mixed affect episode (e.g. Bipolar)"
+          - "Command Hallucinations to hurt self"
+          - "Chronic physical pain or other acute medical problem (e.g. CNS disorders)"
+          - "Highly impulsive behavior"
+          - "Substance abuse or dependence"
+          - "Agitation or severe anxiety"
+          - "Perceived burden on family or others"
+          - "Homicidal Ideation"
+          - "Aggressive behavior towards others"
+          - "Refuses or feels unable to agree to safety plan"
+          - "Sexual abuse (lifetime)"
+          - "Family history of suicide"
+          - "Access to lethal methods (firearm in the home or ease of accessing)"
+
+  step_2_protective_factors:
+    description: "Protective factors may not counteract significant acute suicide risk factors."
+    response_type: "multi_choice"
+    items:
+
+      - id: "SAFE-T_PROTECT_INTERNAL"
+        group: "Internal"
+        items:
+          - "Fear of death or dying due to pain and suffering"
+          - "Identifies reasons for living"
+
+      - id: "SAFE-T_PROTECT_EXTERNAL"
+        group: "External"
+        items:
+          - "Belief that suicide is immoral; high spirituality"
+          - "Responsibility to family or others; living with family"
+          - "Supportive social network of family or friends"
+          - "Engaged in work or school"
+
+  step_3_c_ssrs_ideation_severity:
+    description: >
+      C-SSRS Suicidal Ideation Severity (if question 2 is "no" you may
+      skip 3, 4 and 5). Assessed for the recent month.
+    response_type: "single_choice"
+    response_options:
+      - id: "yes"
+        label: "Yes"
+      - id: "no"
+        label: "No"
+
+    questions:
+
+      - id: "SAFE-T_SI_1"
+        number: 1
+        text: "Wish to be dead"
+        prompt: "Have you wished you were dead or wished you could go to sleep and not wake up?"
+        response_scale: "SAFE-T_yes_no"
+        safety_relevant: true
+
+      - id: "SAFE-T_SI_2"
+        number: 2
+        text: "Current suicidal thoughts"
+        prompt: "Have you actually had any thoughts of killing yourself?"
+        response_scale: "SAFE-T_yes_no"
+        safety_relevant: true
+
+      - id: "SAFE-T_SI_3"
+        number: 3
+        text: "Suicidal thoughts w/ Method (w/no specific Plan or Intent or act)"
+        prompt: "Have you been thinking about how you might do this?"
+        response_scale: "SAFE-T_yes_no"
+        safety_relevant: true
+
+      - id: "SAFE-T_SI_4"
+        number: 4
+        text: "Suicidal Intent without Specific Plan"
+        prompt: "Have you had these thoughts and had some intention of acting on them?"
+        response_scale: "SAFE-T_yes_no"
+        safety_relevant: true
+
+      - id: "SAFE-T_SI_5"
+        number: 5
+        text: "Intent with Plan"
+        prompt: "Have you started to work out or worked out the details of how to kill yourself? Did you intend to carry out this plan?"
+        response_scale: "SAFE-T_yes_no"
+        safety_relevant: true
+
+  step_3_c_ssrs_behavior:
+    description: >
+      C-SSRS Suicidal Behavior: "Have you ever done anything, started to
+      do anything, or prepared to do anything to end your life?" If YES,
+      was it within the past 3 months?
+    response_type: "single_choice"
+    response_options:
+      - id: "yes"
+        label: "Yes"
+      - id: "no"
+        label: "No"
+
+    question:
+      id: "SAFE-T_SB"
+      text: "Suicidal Behavior (lifetime and past 3 months)"
+      prompt: "Have you ever done anything, started to do anything, or prepared to do anything to end your life?"
+      safety_relevant: true
+
+  step_3_c_ssrs_intensity:
+    description: >
+      C-SSRS Suicidal Ideation Intensity (with respect to the most severe
+      ideation 1-5 identified above). Skip if questions 1-5 are all no.
+    response_type: "single_choice"
+    questions:
+
+      - id: "SAFE-T_INT_FREQUENCY"
+        text: "Frequency"
+        prompt: "How many times have you had these thoughts?"
+        options:
+          - id: "freq_1"
+            label: "Less than once a week"
+            code: 1
+          - id: "freq_2"
+            label: "Once a week"
+            code: 2
+          - id: "freq_3"
+            label: "2-5 times in week"
+            code: 3
+          - id: "freq_4"
+            label: "Daily or almost daily"
+            code: 4
+          - id: "freq_5"
+            label: "Many times each day"
+            code: 5
+
+      - id: "SAFE-T_INT_DURATION"
+        text: "Duration"
+        prompt: "When you have the thoughts how long do they last?"
+        options:
+          - id: "dur_1"
+            label: "Fleeting - few seconds or minutes"
+            code: 1
+          - id: "dur_2"
+            label: "Less than 1 hour/some of the time"
+            code: 2
+          - id: "dur_3"
+            label: "1-4 hours/a lot of time"
+            code: 3
+          - id: "dur_4"
+            label: "4-8 hours/most of day"
+            code: 4
+          - id: "dur_5"
+            label: "More than 8 hours/persistent or continuous"
+            code: 5
+
+      - id: "SAFE-T_INT_CONTROLLABILITY"
+        text: "Controllability"
+        prompt: "Could/can you stop thinking about killing yourself or wanting to die if you want to?"
+        options:
+          - id: "con_0"
+            label: "Does not attempt to control thoughts"
+            code: 0
+          - id: "con_1"
+            label: "Easily able to control thoughts"
+            code: 1
+          - id: "con_2"
+            label: "Can control thoughts with little difficulty"
+            code: 2
+          - id: "con_3"
+            label: "Can control thoughts with some difficulty"
+            code: 3
+          - id: "con_4"
+            label: "Can control thoughts with a lot of difficulty"
+            code: 4
+          - id: "con_5"
+            label: "Unable to control thoughts"
+            code: 5
+
+      - id: "SAFE-T_INT_DETERRENTS"
+        text: "Deterrents"
+        prompt: "Are there things - anyone or anything - that stopped you from wanting to die or acting on thoughts of suicide?"
+        options:
+          - id: "det_0"
+            label: "Does not apply"
+            code: 0
+          - id: "det_1"
+            label: "Deterrents definitely stopped you from attempting suicide"
+            code: 1
+          - id: "det_2"
+            label: "Deterrents probably stopped you"
+            code: 2
+          - id: "det_3"
+            label: "Uncertain that deterrents stopped you"
+            code: 3
+          - id: "det_4"
+            label: "Deterrents most likely did not stop you"
+            code: 4
+          - id: "det_5"
+            label: "Deterrents definitely did not stop you"
+            code: 5
+
+      - id: "SAFE-T_INT_REASONS"
+        text: "Reasons for Ideation"
+        prompt: "What sort of reasons did you have for thinking about wanting to die or killing yourself?"
+        options:
+          - id: "reas_0"
+            label: "Does not apply"
+            code: 0
+          - id: "reas_1"
+            label: "Completely to get attention, revenge or a reaction from others"
+            code: 1
+          - id: "reas_2"
+            label: "Mostly to get attention, revenge or a reaction from others"
+            code: 2
+          - id: "reas_3"
+            label: "Equally to get attention, revenge or a reaction from others and to end/stop the pain"
+            code: 3
+          - id: "reas_4"
+            label: "Mostly to end or stop the pain"
+            code: 4
+          - id: "reas_5"
+            label: "Completely to end or stop the pain"
+            code: 5
+
+  step_4_risk_level:
+    description: "Risk stratification triage - select one level."
+    response_type: "single_choice"
+    options:
+      - id: "high"
+        label: "High Suicide Risk"
+      - id: "moderate"
+        label: "Moderate Suicide Risk"
+      - id: "low"
+        label: "Low Suicide Risk"

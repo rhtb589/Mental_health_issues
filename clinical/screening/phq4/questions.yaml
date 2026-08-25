@@ -1,0 +1,52 @@
+instrument_id: "PHQ4"
+
+instructions:
+  text: >
+    Over the last 2 weeks, how often have you been bothered by the
+    following problems?
+
+  response_instruction: >
+    Use the appropriate response to indicate your answer.
+
+response_options:
+  - id: "not_at_all"
+    label: "Not at all"
+    score: 0
+
+  - id: "several_days"
+    label: "Several days"
+    score: 1
+
+  - id: "more_than_half_days"
+    label: "More than half the days"
+    score: 2
+
+  - id: "nearly_every_day"
+    label: "Nearly every day"
+    score: 3
+
+questions:
+
+  - id: "PHQ4_01"
+    number: 1
+    text: "Feeling nervous, anxious or on edge"
+    response_type: "single_choice"
+    response_scale: "PHQ4_frequency"
+
+  - id: "PHQ4_02"
+    number: 2
+    text: "Not being able to stop or control worrying"
+    response_type: "single_choice"
+    response_scale: "PHQ4_frequency"
+
+  - id: "PHQ4_03"
+    number: 3
+    text: "Little interest or pleasure in doing things"
+    response_type: "single_choice"
+    response_scale: "PHQ4_frequency"
+
+  - id: "PHQ4_04"
+    number: 4
+    text: "Feeling down, depressed, or hopeless"
+    response_type: "single_choice"
+    response_scale: "PHQ4_frequency"

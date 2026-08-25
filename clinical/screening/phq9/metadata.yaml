@@ -1,0 +1,118 @@
+instrument:
+  id: "PHQ9"
+  name: "Patient Health Questionnaire-9"
+  abbreviation: "PHQ-9"
+  type: "symptom_screening_instrument"
+
+  purpose:
+    description: >
+      Questionnaire assessing the frequency of nine problems over the
+      previous two weeks.
+
+  source:
+    document: "PHQ-9_English.pdf"
+    source_type: "provided_official_document"
+    page: 1
+
+  developers:
+    - "Robert L. Spitzer"
+    - "Janet B. W. Williams"
+    - "Kurt Kroenke"
+    - "colleagues"
+
+  reproduction:
+    permission_statement: >
+      The provided document states that no permission is required to
+      reproduce, translate, display or distribute the instrument.
+
+administration:
+  recall_period:
+    value: 2
+    unit: "weeks"
+
+  number_of_items: 9
+
+  response_type: "frequency"
+
+  instructions: >
+    Over the last 2 weeks, how often have you been bothered by any
+    of the following problems?
+
+response_scale:
+  - score: 0
+    label: "Not at all"
+
+  - score: 1
+    label: "Several days"
+
+  - score: 2
+    label: "More than half the days"
+
+  - score: 3
+    label: "Nearly every day"
+
+scoring:
+  method: "sum"
+  minimum_score: 0
+  maximum_score: 27
+
+  item_score_range:
+    minimum: 0
+    maximum: 3
+
+  number_of_items: 9
+
+interpretation:
+  status: "requires_verified_scoring_guidance"
+
+  note: >
+    The provided PHQ-9 PDF contains the item scoring values and total
+    score field, but does not provide score-severity interpretation
+    bands. These should be populated from an authoritative PHQ-9
+    scoring/interpretation source after clinical verification.
+
+functional_impact:
+  included: true
+
+  question: >
+    If you checked off any problems, how difficult have these problems
+    made it for you to do your work, take care of things at home, or
+    get along with other people?
+
+  response_options:
+    - "Not difficult at all"
+    - "Somewhat difficult"
+    - "Very difficult"
+    - "Extremely difficult"
+
+  scoring:
+    status: "not_defined_in_provided_pdf"
+
+safety:
+  item_9:
+    enabled: true
+    question_id: "PHQ9_09"
+
+    description: >
+      Item 9 concerns thoughts that the person would be better off dead
+      or of hurting themselves.
+
+    requires_separate_safety_workflow: true
+
+    safety_rule_source:
+      status: "requires_clinically_verified_protocol"
+
+diagnostic_use:
+  diagnostic_test: false
+  diagnosis_from_score: false
+
+clinical_use:
+  professional_review: true
+
+version:
+  instrument_version: "not specified in provided PDF"
+  source_verified_date: null
+
+provenance:
+  source_file: "PHQ-9_English.pdf"
+  source_page: 1

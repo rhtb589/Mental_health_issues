@@ -1,0 +1,70 @@
+instrument_id: "GAD7"
+
+instructions:
+  text: >
+    Over the last 2 weeks, how often have you been bothered by the
+    following problems?
+
+  response_instruction: >
+    Use the appropriate response to indicate your answer.
+
+response_options:
+  - id: "not_at_all"
+    label: "Not at all"
+    score: 0
+
+  - id: "several_days"
+    label: "Several days"
+    score: 1
+
+  - id: "more_than_half_days"
+    label: "More than half the days"
+    score: 2
+
+  - id: "nearly_every_day"
+    label: "Nearly every day"
+    score: 3
+
+questions:
+
+  - id: "GAD7_01"
+    number: 1
+    text: "Feeling nervous, anxious or on edge"
+    response_type: "single_choice"
+    response_scale: "GAD7_frequency"
+
+  - id: "GAD7_02"
+    number: 2
+    text: "Not being able to stop or control worrying"
+    response_type: "single_choice"
+    response_scale: "GAD7_frequency"
+
+  - id: "GAD7_03"
+    number: 3
+    text: "Worrying too much about different things"
+    response_type: "single_choice"
+    response_scale: "GAD7_frequency"
+
+  - id: "GAD7_04"
+    number: 4
+    text: "Trouble relaxing"
+    response_type: "single_choice"
+    response_scale: "GAD7_frequency"
+
+  - id: "GAD7_05"
+    number: 5
+    text: "Being so restless that it is hard to sit still"
+    response_type: "single_choice"
+    response_scale: "GAD7_frequency"
+
+  - id: "GAD7_06"
+    number: 6
+    text: "Becoming easily annoyed or irritable"
+    response_type: "single_choice"
+    response_scale: "GAD7_frequency"
+
+  - id: "GAD7_07"
+    number: 7
+    text: "Feeling afraid as if something awful might happen"
+    response_type: "single_choice"
+    response_scale: "GAD7_frequency"

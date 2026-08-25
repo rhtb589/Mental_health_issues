@@ -1,0 +1,115 @@
+instrument_id: "PHQ9"
+
+instructions:
+  text: >
+    Over the last 2 weeks, how often have you been bothered by any
+    of the following problems?
+
+  response_instruction: >
+    Use the appropriate response to indicate your answer.
+
+response_options:
+  - id: "not_at_all"
+    label: "Not at all"
+    score: 0
+
+  - id: "several_days"
+    label: "Several days"
+    score: 1
+
+  - id: "more_than_half_days"
+    label: "More than half the days"
+    score: 2
+
+  - id: "nearly_every_day"
+    label: "Nearly every day"
+    score: 3
+
+questions:
+
+  - id: "PHQ9_01"
+    number: 1
+    text: "Little interest or pleasure in doing things"
+    response_type: "single_choice"
+    response_scale: "PHQ9_frequency"
+
+  - id: "PHQ9_02"
+    number: 2
+    text: "Feeling down, depressed, or hopeless"
+    response_type: "single_choice"
+    response_scale: "PHQ9_frequency"
+
+  - id: "PHQ9_03"
+    number: 3
+    text: "Trouble falling or staying asleep, or sleeping too much"
+    response_type: "single_choice"
+    response_scale: "PHQ9_frequency"
+
+  - id: "PHQ9_04"
+    number: 4
+    text: "Feeling tired or having little energy"
+    response_type: "single_choice"
+    response_scale: "PHQ9_frequency"
+
+  - id: "PHQ9_05"
+    number: 5
+    text: "Poor appetite or overeating"
+    response_type: "single_choice"
+    response_scale: "PHQ9_frequency"
+
+  - id: "PHQ9_06"
+    number: 6
+    text: >
+      Feeling bad about yourself — or that you are a failure or have
+      let yourself or your family down
+    response_type: "single_choice"
+    response_scale: "PHQ9_frequency"
+
+  - id: "PHQ9_07"
+    number: 7
+    text: >
+      Trouble concentrating on things, such as reading the newspaper
+      or watching television
+    response_type: "single_choice"
+    response_scale: "PHQ9_frequency"
+
+  - id: "PHQ9_08"
+    number: 8
+    text: >
+      Moving or speaking so slowly that other people could have
+      noticed? Or the opposite — being so fidgety or restless that
+      you have been moving around a lot more than usual
+    response_type: "single_choice"
+    response_scale: "PHQ9_frequency"
+
+  - id: "PHQ9_09"
+    number: 9
+    text: >
+      Thoughts that you would be better off dead or of hurting
+      yourself in some way
+    response_type: "single_choice"
+    response_scale: "PHQ9_frequency"
+    safety_relevant: true
+
+functional_impact:
+  id: "PHQ9_FUNCTIONAL_IMPACT"
+
+  text: >
+    If you checked off any problems, how difficult have these problems
+    made it for you to do your work, take care of things at home, or
+    get along with other people?
+
+  response_type: "single_choice"
+
+  options:
+    - id: "not_difficult"
+      label: "Not difficult at all"
+
+    - id: "somewhat_difficult"
+      label: "Somewhat difficult"
+
+    - id: "very_difficult"
+      label: "Very difficult"
+
+    - id: "extremely_difficult"
+      label: "Extremely difficult"

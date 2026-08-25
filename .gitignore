@@ -9,6 +9,11 @@ not_used_docs/
 critical_conditions.md
 Dockerfile
 folder_structure.md
+process.md
+accessdb.py
 
 # Patterns
 *.pyc   
+
+#env
+mhi/

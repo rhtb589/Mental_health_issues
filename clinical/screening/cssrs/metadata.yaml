@@ -1,0 +1,97 @@
+instrument:
+  id: "C-SSRS"
+  name: "Columbia-Suicide Severity Rating Scale (Full Version - Lifetime/Recent)"
+  abbreviation: "C-SSRS"
+  type: "clinician_administered_suicide_risk_assessment"
+
+  purpose:
+    description: >
+      Clinician-administered scale that captures the severity of suicidal
+      ideation and the presence of suicidal behavior, including
+      lifetime and recent (past month / past 3 months) timeframes.
+
+  source:
+    document: "C-SSRS-Full-Lifetime-Recent.pdf"
+    source_type: "provided_official_document"
+    page: 1
+
+  developers:
+    - "Columbia University"
+    - "NIMH"
+
+  reproduction:
+    permission_statement: >
+      The provided document is a reproduction of the Columbia-Suicide
+      Severity Rating Scale. Verify reproduction and distribution
+      permissions from the official C-SSRS source before use.
+
+administration:
+  recall_period:
+    ideation:
+      timeframe: "lifetime_and_past_1_month"
+    behavior:
+      timeframe: "lifetime_and_past_3_months"
+
+  response_type: "clinician_rated_yes_no_and_coded"
+
+  instructions: >
+    Ask questions 1 and 2. If both are negative, proceed to the
+    "Suicidal Behavior" section. If the answer to question 2 is "yes",
+    ask questions 3, 4 and 5. If the answer to question 1 and/or 2 is
+    "yes", complete the "Intensity of Ideation" section.
+
+sections:
+
+  suicidal_ideation:
+    description: >
+      Items 1-5 assess the severity of suicidal ideation, ranging from
+      wish to be dead to active ideation with specific plan and intent.
+    response_options:
+      - "Yes"
+      - "No"
+
+  suicidal_behavior:
+    description: >
+      Assesses actual attempts, interrupted attempts, aborted or
+      self-interrupted attempts, and preparatory acts or behavior.
+    response_options:
+      - "Yes"
+      - "No"
+
+  intensity_of_ideation:
+    description: >
+      Rated with respect to the most severe type of ideation
+      (items 1-5). Includes Frequency, Duration, Controllability,
+      Deterrents and Reasons for Ideation.
+
+scoring:
+  method: "categorical_clinician_rated"
+  numeric_summary_score: false
+
+  item_score_range:
+    note: >
+      Suicidal ideation items are rated Yes/No. Intensity of ideation
+      features are rated on coded ordinal scales (see questions.yaml).
+
+safety:
+  enabled: true
+  description: >
+    The instrument is itself a suicide risk assessment. All positive
+    ideation or behavior responses require a clinically verified safety
+    workflow and escalation protocol.
+
+diagnostic_use:
+  diagnostic_test: false
+  diagnosis_from_score: false
+
+clinical_use:
+  professional_review: true
+  clinician_administered: true
+
+version:
+  instrument_version: "Full Version (Lifetime/Recent), not specified in provided PDF"
+  source_verified_date: null
+
+provenance:
+  source_file: "C-SSRS-Full-Lifetime-Recent.pdf"
+  source_page: 1

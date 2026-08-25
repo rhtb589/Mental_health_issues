@@ -1,0 +1,249 @@
+instrument_id: "C-SSRS"
+
+instructions:
+  text: >
+    Ask questions 1 and 2. If both are negative, proceed to the
+    "Suicidal Behavior" section. If the answer to question 2 is "yes",
+    ask questions 3, 4 and 5. If the answer to question 1 and/or 2 is
+    "yes", complete the "Intensity of Ideation" section.
+
+sections:
+
+  suicidal_ideation:
+    response_type: "single_choice"
+    response_options:
+      - id: "yes"
+        label: "Yes"
+      - id: "no"
+        label: "No"
+
+    questions:
+
+      - id: "C-SSRS_SI_1"
+        number: 1
+        text: "Wish to be dead"
+        description: >
+          Person endorses thoughts about a wish to be dead or not alive
+          anymore or wish to fall asleep and not wake up.
+        prompt: "Have you wished you were dead or wished you could go to sleep and not wake up?"
+        response_type: "single_choice"
+        response_scale: "C-SSRS_yes_no"
+        safety_relevant: true
+
+      - id: "C-SSRS_SI_2"
+        number: 2
+        text: "Non-Specific Active Suicidal Thoughts"
+        description: >
+          General non-specific thoughts of wanting to end one's life/die
+          by suicide without methods, intent, or plan.
+        prompt: "Have you actually had any thoughts of killing yourself?"
+        response_type: "single_choice"
+        response_scale: "C-SSRS_yes_no"
+        safety_relevant: true
+
+      - id: "C-SSRS_SI_3"
+        number: 3
+        text: "Active Suicidal Ideation with Any Methods (Not Plan) without Intent to Act"
+        description: >
+          Thoughts of suicide with at least one method but no specific
+          plan and no intent to act.
+        prompt: "Have you been thinking about how you might do this?"
+        response_type: "single_choice"
+        response_scale: "C-SSRS_yes_no"
+        safety_relevant: true
+
+      - id: "C-SSRS_SI_4"
+        number: 4
+        text: "Active Suicidal Ideation with Some Intent to Act, without Specific Plan"
+        description: >
+          Active suicidal thoughts with some intent to act, but no
+          specific plan.
+        prompt: "Have you had these thoughts and had some intention of acting on them?"
+        response_type: "single_choice"
+        response_scale: "C-SSRS_yes_no"
+        safety_relevant: true
+
+      - id: "C-SSRS_SI_5"
+        number: 5
+        text: "Active Suicidal Ideation with Specific Plan and Intent"
+        description: >
+          Thoughts of killing oneself with details of plan worked out
+          and some intent to carry it out.
+        prompt: "Have you started to work out or worked out the details of how to kill yourself? Did you intend to carry out this plan?"
+        response_type: "single_choice"
+        response_scale: "C-SSRS_yes_no"
+        safety_relevant: true
+
+  suicidal_behavior:
+    description: >
+      Check all that apply; must ask about all types. Assessed for
+      lifetime and past 3 months.
+
+    response_type: "single_choice"
+    response_options:
+      - id: "yes"
+        label: "Yes"
+      - id: "no"
+        label: "No"
+
+    questions:
+
+      - id: "C-SSRS_SB_ATTEMPT"
+        text: "Actual Attempt"
+        description: >
+          A potentially self-injurious act undertaken with at least some
+          wish to die as a result of the act.
+        prompt: "Have you made a suicide attempt? Have you done anything to harm yourself? Have you done anything dangerous where you could have died?"
+        response_type: "single_choice"
+        response_scale: "C-SSRS_yes_no"
+        safety_relevant: true
+
+      - id: "C-SSRS_SB_INTERRUPTED"
+        text: "Interrupted Attempt"
+        description: >
+          Person is interrupted by an outside circumstance from starting
+          a potentially self-injurious act.
+        prompt: "Has there been a time when you started to do something to end your life but someone or something stopped you before you actually did anything?"
+        response_type: "single_choice"
+        response_scale: "C-SSRS_yes_no"
+        safety_relevant: true
+
+      - id: "C-SSRS_SB_ABORTED"
+        text: "Aborted or Self-Interrupted Attempt"
+        description: >
+          Person begins steps toward an attempt but stops themselves
+          before any self-destructive behavior.
+        prompt: "Has there been a time when you started to do something to try to end your life but you stopped yourself before you actually did anything?"
+        response_type: "single_choice"
+        response_scale: "C-SSRS_yes_no"
+        safety_relevant: true
+
+      - id: "C-SSRS_SB_PREPARATORY"
+        text: "Preparatory Acts or Behavior"
+        description: >
+          Acts or preparation toward imminently making a suicide
+          attempt (e.g., collecting pills, getting a gun, writing a note).
+        prompt: "Have you taken any steps towards making a suicide attempt or preparing to kill yourself (such as collecting pills, getting a gun, giving valuables away or writing a suicide note)?"
+        response_type: "single_choice"
+        response_scale: "C-SSRS_yes_no"
+        safety_relevant: true
+
+  intensity_of_ideation:
+    description: >
+      Rated with respect to the most severe type of ideation (items 1-5).
+
+    questions:
+
+      - id: "C-SSRS_INT_FREQUENCY"
+        text: "Frequency"
+        prompt: "How many times have you had these thoughts?"
+        response_type: "single_choice"
+        options:
+          - id: "freq_1"
+            label: "Less than once a week"
+            code: 1
+          - id: "freq_2"
+            label: "Once a week"
+            code: 2
+          - id: "freq_3"
+            label: "2-5 times in week"
+            code: 3
+          - id: "freq_4"
+            label: "Daily or almost daily"
+            code: 4
+          - id: "freq_5"
+            label: "Many times each day"
+            code: 5
+
+      - id: "C-SSRS_INT_DURATION"
+        text: "Duration"
+        prompt: "When you have the thoughts how long do they last?"
+        response_type: "single_choice"
+        options:
+          - id: "dur_1"
+            label: "Fleeting - few seconds or minutes"
+            code: 1
+          - id: "dur_2"
+            label: "Less than 1 hour/some of the time"
+            code: 2
+          - id: "dur_3"
+            label: "1-4 hours/a lot of time"
+            code: 3
+          - id: "dur_4"
+            label: "4-8 hours/most of day"
+            code: 4
+          - id: "dur_5"
+            label: "More than 8 hours/persistent or continuous"
+            code: 5
+
+      - id: "C-SSRS_INT_CONTROLLABILITY"
+        text: "Controllability"
+        prompt: "Could/can you stop thinking about killing yourself or wanting to die if you want to?"
+        response_type: "single_choice"
+        options:
+          - id: "con_0"
+            label: "Does not attempt to control thoughts"
+            code: 0
+          - id: "con_1"
+            label: "Easily able to control thoughts"
+            code: 1
+          - id: "con_2"
+            label: "Can control thoughts with little difficulty"
+            code: 2
+          - id: "con_3"
+            label: "Can control thoughts with some difficulty"
+            code: 3
+          - id: "con_4"
+            label: "Can control thoughts with a lot of difficulty"
+            code: 4
+          - id: "con_5"
+            label: "Unable to control thoughts"
+            code: 5
+
+      - id: "C-SSRS_INT_DETERRENTS"
+        text: "Deterrents"
+        prompt: "Are there things - anyone or anything - that stopped you from wanting to die or acting on thoughts of suicide?"
+        response_type: "single_choice"
+        options:
+          - id: "det_0"
+            label: "Does not apply"
+            code: 0
+          - id: "det_1"
+            label: "Deterrents definitely stopped you from attempting suicide"
+            code: 1
+          - id: "det_2"
+            label: "Deterrents probably stopped you"
+            code: 2
+          - id: "det_3"
+            label: "Uncertain that deterrents stopped you"
+            code: 3
+          - id: "det_4"
+            label: "Deterrents most likely did not stop you"
+            code: 4
+          - id: "det_5"
+            label: "Deterrents definitely did not stop you"
+            code: 5
+
+      - id: "C-SSRS_INT_REASONS"
+        text: "Reasons for Ideation"
+        prompt: "What sort of reasons did you have for thinking about wanting to die or killing yourself?"
+        response_type: "single_choice"
+        options:
+          - id: "reas_0"
+            label: "Does not apply"
+            code: 0
+          - id: "reas_1"
+            label: "Completely to get attention, revenge or a reaction from others"
+            code: 1
+          - id: "reas_2"
+            label: "Mostly to get attention, revenge or a reaction from others"
+            code: 2
+          - id: "reas_3"
+            label: "Equally to get attention, revenge or a reaction from others and to end/stop the pain"
+            code: 3
+          - id: "reas_4"
+            label: "Mostly to end or stop the pain"
+            code: 4
+          - id: "reas_5"
+            label: "Completely to end or stop the pain"
+            code: 5

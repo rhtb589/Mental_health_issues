@@ -1,0 +1,86 @@
+instrument:
+  id: "SAFE-T"
+  name: "Suicide Assessment Five-Step Evaluation and Triage (with C-SSRS)"
+  abbreviation: "SAFE-T"
+  type: "clinician_administered_suicide_risk_protocol"
+
+  purpose:
+    description: >
+      A five-step suicide risk assessment protocol that identifies risk
+      and protective factors, conducts specific questioning using the
+      C-SSRS, determines level of risk, and guides documentation and
+      intervention.
+
+  source:
+    document: "SAFE-T-Protocol-w-C-SSRS.pdf"
+    source_type: "provided_official_document"
+    page: 1
+
+  developers:
+    - "SAMHSA"
+    - "Columbia University (C-SSRS items)"
+
+  reproduction:
+    permission_statement: >
+      The provided document is a reproduction of the SAFE-T Protocol with
+      C-SSRS. Verify reproduction and distribution permissions from the
+      official source before use.
+
+administration:
+  recall_period:
+    ideation:
+      timeframe: "recent_month"
+    behavior:
+      timeframe: "lifetime_and_past_3_months"
+
+  response_type: "clinician_rated_checklist_and_coded"
+
+  instructions: >
+    Follow the five steps: (1) Identify Risk Factors, (2) Identify
+    Protective Factors, (3) Specific questioning about Thoughts, Plans,
+    and Suicidal Intent using C-SSRS, (4) Determine Level of Risk and
+    develop interventions, (5) Documentation.
+
+steps:
+  - id: "step_1"
+    name: "Identify Risk Factors"
+  - id: "step_2"
+    name: "Identify Protective Factors"
+  - id: "step_3"
+    name: "Specific Questioning (C-SSRS Ideation Severity and Intensity)"
+  - id: "step_4"
+    name: "Determine Level of Risk and Develop Interventions"
+  - id: "step_5"
+    name: "Documentation"
+
+scoring:
+  method: "categorical_clinician_rated"
+  numeric_summary_score: false
+  risk_stratification:
+    levels:
+      - "High Suicide Risk"
+      - "Moderate Suicide Risk"
+      - "Low Suicide Risk"
+
+safety:
+  enabled: true
+  description: >
+    The protocol is a suicide risk triage tool. Positive C-SSRS ideation
+    (items 4 or 5) or any suicidal behavior requires activation of the
+    corresponding escalation and higher level of care workflow.
+
+diagnostic_use:
+  diagnostic_test: false
+  diagnosis_from_score: false
+
+clinical_use:
+  professional_review: true
+  clinician_administered: true
+
+version:
+  instrument_version: "with C-SSRS (Columbia Risk and Protective Factors) - Recent, not specified in provided PDF"
+  source_verified_date: null
+
+provenance:
+  source_file: "SAFE-T-Protocol-w-C-SSRS.pdf"
+  source_page: 1
