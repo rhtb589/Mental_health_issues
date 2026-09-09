@@ -7,8 +7,7 @@ An AI-powered mental health screening and support platform with RAG (Retrieval-A
 - **Python 3.12+**
 - **Node.js 18+** (with npm)
 - **PostgreSQL 14+**
-- **Ollama** (for local LLM inference)
-- **CUDA GPU** (16+ GB VRAM, required only for fine-tuning)
+- **CUDA GPU** (16+ GB VRAM, required for LLM inference and fine-tuning)
 
 ## Quick Start
 
@@ -38,7 +37,7 @@ Edit `.env` and set at minimum:
 - `MHC_JWT_SECRET` — a long random string for JWT signing
 - `MHC_FIELD_ENCRYPTION_KEY` — generate with:
   ```bash
-  python -c "from app.security.encryption import generate_key; print(generate_key())"
+  cd backend && python -c "from app.security.encryption import generate_key; print(generate_key())"
   ```
 
 ### 3. Set up PostgreSQL
@@ -57,18 +56,9 @@ python scripts/initialize_db.py --sql
 
 This creates all tables defined in `database/schema.sql`.
 
-### 4. Install and start Ollama
+### 4. Build the RAG vector store
 
-Download from [ollama.ai](https://ollama.ai), then pull the required models:
-
-```bash
-ollama pull llama3
-ollama serve
-```
-
-### 5. Build the RAG vector store
-
-Place your PDF documents in `datasets/`, then build embeddings:
+The PDF source documents are included in the repo at `datasets/`. Build embeddings:
 
 ```bash
 python -m ml_ai.rag.embeddings.generation
@@ -76,7 +66,7 @@ python -m ml_ai.rag.embeddings.generation
 
 This creates a ChromaDB vector store at `datasets/chroma_db/`.
 
-### 6. Start the backend
+### 5. Start the backend
 
 ```bash
 cd backend
@@ -85,7 +75,7 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 
 The API is available at `http://localhost:8000/api/v1/`.
 
-### 7. Start the frontend
+### 6. Start the frontend
 
 ```bash
 cd frontend/web
@@ -229,7 +219,7 @@ Mental_health_issues/
 │   └── documentation/          # Clinical reference docs
 ├── datasets/                   # RAG documents & vector store
 │   ├── chroma_db/              # ChromaDB database (git-ignored)
-│   └── *.pdf                   # Source documents (git-ignored)
+│   └── *.pdf                   # Source documents (tracked in repo)
 ├── database/
 │   └── schema.sql              # PostgreSQL DDL
 ├── frontend/

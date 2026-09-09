@@ -17,9 +17,18 @@ from app.api import auth, consent, assessments, admin, users, research, dashboar
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    settings.validate_secrets()
+
     if settings.environment == "dev":
         import app.models  # noqa: F401 – registers all models
-        Base.metadata.create_all(engine)
+        try:
+            Base.metadata.create_all(engine)
+        except Exception as exc:
+            raise SystemExit(
+                f"Cannot connect to PostgreSQL ({exc}). "
+                "Ensure PostgreSQL is running and the database exists. "
+                "See README Step 3."
+            ) from exc
 
     import time
 

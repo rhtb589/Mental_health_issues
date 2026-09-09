@@ -62,7 +62,22 @@ def _is_fernet_key(raw: bytes) -> bool:
 
 
 # Module-level singleton for convenience.
-encryptor = FieldEncryptor()
+def _create_encryptor() -> FieldEncryptor:
+    """Create the global encryptor, validating the key is not a placeholder."""
+    raw = settings.field_encryption_key.encode()
+    if not _is_fernet_key(raw) and settings.field_encryption_key in (
+        "CHANGE_ME_ENCRYPTION_KEY",
+        "replace-with-fernet-key",
+    ):
+        raise SystemExit(
+            "MHC_FIELD_ENCRYPTION_KEY is a placeholder. "
+            "Generate a real key: cd backend && python -c "
+            "\"from app.security.encryption import generate_key; print(generate_key())\""
+        )
+    return FieldEncryptor()
+
+
+encryptor = _create_encryptor()
 
 
 def generate_key() -> str:

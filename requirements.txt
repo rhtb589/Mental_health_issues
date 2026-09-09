@@ -21,13 +21,12 @@ cryptography>=42.0
 # --- LLM & RAG ---
 langgraph>=1.2
 
-# --- Fine-tuning ---
+# --- LLM Inference ---
 transformers>=4.40
 peft>=0.11
-trl>=0.8
-datasets>=2.18
-huggingface-hub>=0.23
 safetensors>=0.4
+bitsandbytes>=0.43
+accelerate>=0.30
 
 # --- Vector Store ---
 chromadb>=0.5

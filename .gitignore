@@ -8,6 +8,7 @@
 # Vector Database & Raw Data Artifacts
 datasets/chroma_db/
 datasets/*.pdf
+!datasets/*.pdf
 *.sqlite3
 
 # Python & ML Artifacts

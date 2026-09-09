@@ -76,6 +76,16 @@ class Settings(BaseSettings):
     def is_production(self) -> bool:
         return self.environment == "prod"
 
+    def validate_secrets(self) -> None:
+        """Reject placeholder / default secret values at startup."""
+        errors: list[str] = []
+        if self.jwt_secret in ("CHANGE_ME_IN_PROD", "replace-with-long-random-string", ""):
+            errors.append("MHC_JWT_SECRET is not set. Generate one: python -c \"import secrets; print(secrets.token_urlsafe(32))\"")
+        if self.field_encryption_key in ("CHANGE_ME_ENCRYPTION_KEY", "replace-with-fernet-key", ""):
+            errors.append("MHC_FIELD_ENCRYPTION_KEY is not set. Generate one: cd backend && python -c \"from app.security.encryption import generate_key; print(generate_key())\"")
+        if errors:
+            raise SystemExit("\n".join(["Startup failed:"] + errors))
+
 
 @lru_cache
 def get_settings() -> Settings:

@@ -5,6 +5,7 @@
 
 -r requirements.txt
 
-# --- GPU / Quantization ---
-bitsandbytes>=0.43
-accelerate>=0.30
+# --- Training / Fine-tuning ---
+trl>=0.8
+datasets>=2.18
+huggingface-hub>=0.23
