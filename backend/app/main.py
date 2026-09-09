@@ -11,7 +11,6 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
-from app.core.database import Base, engine
 from app.api import auth, consent, assessments, admin, users, research, dashboard, audit, assignments, data_requests, chat
 
 
@@ -21,14 +20,6 @@ async def lifespan(app: FastAPI):
 
     if settings.environment == "dev":
         import app.models  # noqa: F401 – registers all models
-        try:
-            Base.metadata.create_all(engine)
-        except Exception as exc:
-            raise SystemExit(
-                f"Cannot connect to PostgreSQL ({exc}). "
-                "Ensure PostgreSQL is running and the database exists. "
-                "See README Step 3."
-            ) from exc
 
     import time
 
