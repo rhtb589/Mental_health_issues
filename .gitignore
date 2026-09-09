@@ -1,21 +1,36 @@
-# Directories (trailing slash ensures only folders are ignored)
-datasets/
-docs/
-notebooks/
-screeners/
-not_used_docs/
-database/
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
 
+# Vector Database & Raw Data Artifacts
+datasets/chroma_db/
+datasets/*.pdf
+*.sqlite3
 
-# Specific files
-critical_conditions.md
-Dockerfile
-folder_structure.md
-process.md
-accessdb.py
-
-# Patterns
-*.pyc   
-
-#env
+# Python & ML Artifacts
+__pycache__/
+*.pyc
+.pytest_cache/
+venv/
+.venv/
 mhi/
+mhi-train/
+ml_ai/**/checkpoints/
+*.safetensors
+*.joblib
+*.bin
+*.pt
+*.onnx
+
+# Node / Frontend
+frontend/web/node_modules/
+frontend/web/dist/
+frontend/web/.vite/
+
+# OS / Editor
+.DS_Store
+.vscode/
+.idea/

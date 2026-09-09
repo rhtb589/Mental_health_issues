@@ -1,0 +1,124 @@
+schema_version: "1.0"
+
+screening_instruments:
+
+  PHQ9:
+
+    name: "Patient Health Questionnaire-9"
+
+    category:
+      - "depression_symptoms"
+      - "symptom_screening"
+
+    instrument_type: "screening"
+
+    purpose:
+      description: >
+        Assesses the frequency of nine problems over the previous
+        two weeks.
+
+    administration:
+      recall_period:
+        value: 2
+        unit: "weeks"
+
+      number_of_items: 9
+
+      response_type: "single_choice"
+
+    scoring:
+      method: "sum"
+
+      item_score_range:
+        min: 0
+        max: 3
+
+      total_score_range:
+        min: 0
+        max: 27
+
+      implementation:
+        module: "screeners.PHQ9.scoring"
+        function: "calculate_score"
+
+    interpretation:
+      available: true
+
+      source:
+        type: "verified_instrument_guidance"
+
+      implementation:
+        file: "screeners/PHQ9/interpretation.yaml"
+
+    safety:
+      safety_relevant: true
+
+      safety_items:
+        - "PHQ9_09"
+
+      rule_reference:
+        file: "clinical/registries/safety_rules.yaml"
+
+    functional_assessment:
+      available: true
+      question_id: "PHQ9_FUNCTIONAL_IMPACT"
+
+    source:
+      document: "screeners/PHQ9/source/PHQ-9_English.pdf"
+      page: 1
+
+    files:
+      metadata: "screeners/PHQ9/metadata.yaml"
+      questions: "screeners/PHQ9/questions.yaml"
+      scoring: "screeners/PHQ9/scoring.py"
+      interpretation: "screeners/PHQ9/interpretation.yaml"
+
+    governance:
+      diagnostic_test: false
+      diagnosis_from_score: false
+      clinical_review_required: true
+
+
+  GAD7:
+
+    name: "Generalized Anxiety Disorder-7"
+
+    category:
+      - "anxiety_symptoms"
+
+    instrument_type: "screening"
+
+    administration:
+      recall_period:
+        value: 2
+        unit: "weeks"
+
+    scoring:
+      method: "sum"
+
+      implementation:
+        module: "screeners.GAD7.scoring"
+        function: "calculate_score"
+
+    interpretation:
+      available: true
+
+      implementation:
+        file: "screeners/GAD7/interpretation.yaml"
+
+    safety:
+      safety_relevant: false
+
+    source:
+      document: "screeners/GAD7/source/GAD-7.pdf"
+
+    files:
+      metadata: "screeners/GAD7/metadata.yaml"
+      questions: "screeners/GAD7/questions.yaml"
+      scoring: "screeners/GAD7/scoring.py"
+      interpretation: "screeners/GAD7/interpretation.yaml"
+
+    governance:
+      diagnostic_test: false
+      diagnosis_from_score: false
+      clinical_review_required: true

@@ -1,0 +1,17 @@
+{
+  "collection": "mental_health_docs",
+  "embedding_model": "all-MiniLM-L6-v2",
+  "device": "cpu",
+  "total_documents": 10482,
+  "sources": {
+    "Mental_Health_Disorders_Detailed_Guide.pdf": 61,
+    "Mental_Health_Disorders_Expanded_Guide.pdf": 69,
+    "evidence_based_tretment.pdf": 1505,
+    "intervention_guide.pdf": 874,
+    "mhgap.pdf": 1505,
+    "psychology_intervention.pdf": 599,
+    "selfhelp.pdf": 869,
+    "research_data/mental_health_unbanlanced.csv": 5000
+  },
+  "build_time_seconds": 518.2
+}

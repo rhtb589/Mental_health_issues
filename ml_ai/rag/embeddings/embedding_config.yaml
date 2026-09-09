@@ -1,0 +1,34 @@
+# ===========================================================================
+# Embedding & Vector Store Configuration
+# ===========================================================================
+# Used by ml_ai/rag/embeddings/generation.py and rag/vectorstore/chromadb.py
+# ===========================================================================
+
+model:
+  name: all-MiniLM-L6-v2
+  device: cpu  # auto | cpu | cuda
+  batch_size:
+    cuda: 512
+    cpu: 256
+
+chunking:
+  chunk_size: 500
+  chunk_overlap: 80
+
+storage:
+  backend: chroma
+  path: datasets/chroma_db
+  collection: mental_health_docs
+  distance: cosine
+
+ingestion:
+  pdf_files:
+    - Mental_Health_Disorders_Detailed_Guide.pdf
+    - Mental_Health_Disorders_Expanded_Guide.pdf
+    - evidence_based_tretment.pdf
+    - intervention_guide.pdf
+    - mhgap.pdf
+    - psychology_intervention.pdf
+    - selfhelp.pdf
+  csv_file: research_data/mental_health_unbanlanced.csv
+  max_csv_rows: 5000

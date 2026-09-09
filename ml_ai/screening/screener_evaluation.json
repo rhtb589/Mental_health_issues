@@ -1,0 +1,323 @@
+[
+  {
+    "timestamp": "2026-09-04T06:29:47.777074+00:00",
+    "conversation_text": "I have been feeling hopeless and worthless for weeks. Nothing interests me anymore.",
+    "baseline_classification": "Depression",
+    "rag_context_snippet": "[Source: research_data/mental_health_unbanlanced.csv]\nI have so many people that love and cherish me but yet i feel so lonely, i feel like a blank canvas unworthy of love and i have no interest in anything anymore. I feel so hopeless for my future and i feel like a disappointment to my family. I am ",
+    "recommended_instruments": [
+      {
+        "instrument_id": "PHQ9",
+        "name": "PHQ-9 (Patient Health Questionnaire-9)",
+        "purpose": "Screens for depression severity",
+        "score_range": "0-27",
+        "severity_bands": [
+          {
+            "min": 0,
+            "max": 4,
+            "label": "Minimal depression"
+          },
+          {
+            "min": 5,
+            "max": 9,
+            "label": "Mild depression"
+          },
+          {
+            "min": 10,
+            "max": 14,
+            "label": "Moderate depression"
+          },
+          {
+            "min": 15,
+            "max": 19,
+            "label": "Moderately severe depression"
+          },
+          {
+            "min": 20,
+            "max": 27,
+            "label": "Severe depression"
+          }
+        ],
+        "question_count": 9
+      },
+      {
+        "instrument_id": "PHQ4",
+        "name": "PHQ-4 (Patient Health Questionnaire-4)",
+        "purpose": "Brief ultra-brief screen for anxiety and depression",
+        "score_range": "0-12",
+        "severity_bands": [
+          {
+            "min": 0,
+            "max": 2,
+            "label": "Minimal"
+          },
+          {
+            "min": 3,
+            "max": 5,
+            "label": "Mild"
+          },
+          {
+            "min": 6,
+            "max": 8,
+            "label": "Moderate"
+          },
+          {
+            "min": 9,
+            "max": 12,
+            "label": "Severe"
+          }
+        ],
+        "question_count": 4
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-09-04T06:29:47.796072+00:00",
+    "conversation_text": "I cannot stop worrying about everything. My heart races and I feel restless.",
+    "baseline_classification": "Anxiety",
+    "rag_context_snippet": "[Source: research_data/mental_health_unbanlanced.csv]\nSAME TIME ANXIETY I\u2019ve been dealing with some health issues that have left me with no answers so my anxiety has been THROUGH the roof - I\u2019ve been dizzy and exhausted from my anxiety. \n\nBut I\u2019ve noticed my anxiety starts 5am waking me up from my s",
+    "recommended_instruments": [
+      {
+        "instrument_id": "GAD7",
+        "name": "GAD-7 (Generalized Anxiety Disorder-7)",
+        "purpose": "Screens for generalized anxiety disorder",
+        "score_range": "0-21",
+        "severity_bands": [
+          {
+            "min": 0,
+            "max": 4,
+            "label": "Minimal anxiety"
+          },
+          {
+            "min": 5,
+            "max": 9,
+            "label": "Mild anxiety"
+          },
+          {
+            "min": 10,
+            "max": 14,
+            "label": "Moderate anxiety"
+          },
+          {
+            "min": 15,
+            "max": 21,
+            "label": "Severe anxiety"
+          }
+        ],
+        "question_count": 7
+      },
+      {
+        "instrument_id": "PHQ4",
+        "name": "PHQ-4 (Patient Health Questionnaire-4)",
+        "purpose": "Brief ultra-brief screen for anxiety and depression",
+        "score_range": "0-12",
+        "severity_bands": [
+          {
+            "min": 0,
+            "max": 2,
+            "label": "Minimal"
+          },
+          {
+            "min": 3,
+            "max": 5,
+            "label": "Mild"
+          },
+          {
+            "min": 6,
+            "max": 8,
+            "label": "Moderate"
+          },
+          {
+            "min": 9,
+            "max": 12,
+            "label": "Severe"
+          }
+        ],
+        "question_count": 4
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-09-04T06:29:47.809075+00:00",
+    "conversation_text": "I want to end my life. I have been planning how to do it.",
+    "baseline_classification": "Suicidal",
+    "rag_context_snippet": "[Source: research_data/mental_health_unbanlanced.csv]\nI really want to die Kill me\n\n[Source: research_data/mental_health_unbanlanced.csv]\nI would have done it years ago, there is nothing for me here. I do not feel happiness, and I never have, I do not remember any time in my childhood where I did no",
+    "recommended_instruments": [
+      {
+        "instrument_id": "SAFE-T",
+        "name": "SAFE-T / C-SSRS (Suicide Risk)",
+        "purpose": "Evaluates suicidal ideation and risk",
+        "score_range": "Structured (yes/no cascade)",
+        "severity_bands": [
+          {
+            "min": 0,
+            "max": 0,
+            "label": "No current suicidal ideation"
+          },
+          {
+            "min": 1,
+            "max": 1,
+            "label": "Low-moderate risk: passive ideation"
+          },
+          {
+            "min": 2,
+            "max": 2,
+            "label": "Moderate risk: active suicidal thoughts"
+          },
+          {
+            "min": 3,
+            "max": 3,
+            "label": "Moderate risk: thoughts with method"
+          },
+          {
+            "min": 4,
+            "max": 4,
+            "label": "High risk: suicidal ideation with intent"
+          },
+          {
+            "min": 5,
+            "max": 5,
+            "label": "High risk: suicidal ideation with plan"
+          }
+        ],
+        "question_count": 6
+      },
+      {
+        "instrument_id": "PHQ9",
+        "name": "PHQ-9 (Patient Health Questionnaire-9)",
+        "purpose": "Screens for depression severity",
+        "score_range": "0-27",
+        "severity_bands": [
+          {
+            "min": 0,
+            "max": 4,
+            "label": "Minimal depression"
+          },
+          {
+            "min": 5,
+            "max": 9,
+            "label": "Mild depression"
+          },
+          {
+            "min": 10,
+            "max": 14,
+            "label": "Moderate depression"
+          },
+          {
+            "min": 15,
+            "max": 19,
+            "label": "Moderately severe depression"
+          },
+          {
+            "min": 20,
+            "max": 27,
+            "label": "Severe depression"
+          }
+        ],
+        "question_count": 9
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-09-04T06:29:47.820952+00:00",
+    "conversation_text": "I have been feeling down but it is not too bad. Just tired mostly.",
+    "baseline_classification": "Normal",
+    "rag_context_snippet": "[Source: research_data/mental_health_unbanlanced.csv]\nfeeling down\n\n[Source: research_data/mental_health_unbanlanced.csv]\nwhat should i do i am feeling down i don t know",
+    "recommended_instruments": [
+      {
+        "instrument_id": "PHQ4",
+        "name": "PHQ-4 (Patient Health Questionnaire-4)",
+        "purpose": "Brief ultra-brief screen for anxiety and depression",
+        "score_range": "0-12",
+        "severity_bands": [
+          {
+            "min": 0,
+            "max": 2,
+            "label": "Minimal"
+          },
+          {
+            "min": 3,
+            "max": 5,
+            "label": "Mild"
+          },
+          {
+            "min": 6,
+            "max": 8,
+            "label": "Moderate"
+          },
+          {
+            "min": 9,
+            "max": 12,
+            "label": "Severe"
+          }
+        ],
+        "question_count": 4
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-09-04T06:29:47.844959+00:00",
+    "conversation_text": "I feel anxious about work and cannot sleep at night.",
+    "baseline_classification": "Anxiety",
+    "rag_context_snippet": "[Source: research_data/mental_health_unbanlanced.csv]\nWhen I go back to work, I suddenly feel anxious, feeling anxious and I don't know why :(.\n\n[Source: research_data/mental_health_unbanlanced.csv]\nfor some odd reason, i can't truly relax after work because the fact that i have to work tomorrow mak",
+    "recommended_instruments": [
+      {
+        "instrument_id": "GAD7",
+        "name": "GAD-7 (Generalized Anxiety Disorder-7)",
+        "purpose": "Screens for generalized anxiety disorder",
+        "score_range": "0-21",
+        "severity_bands": [
+          {
+            "min": 0,
+            "max": 4,
+            "label": "Minimal anxiety"
+          },
+          {
+            "min": 5,
+            "max": 9,
+            "label": "Mild anxiety"
+          },
+          {
+            "min": 10,
+            "max": 14,
+            "label": "Moderate anxiety"
+          },
+          {
+            "min": 15,
+            "max": 21,
+            "label": "Severe anxiety"
+          }
+        ],
+        "question_count": 7
+      },
+      {
+        "instrument_id": "PHQ4",
+        "name": "PHQ-4 (Patient Health Questionnaire-4)",
+        "purpose": "Brief ultra-brief screen for anxiety and depression",
+        "score_range": "0-12",
+        "severity_bands": [
+          {
+            "min": 0,
+            "max": 2,
+            "label": "Minimal"
+          },
+          {
+            "min": 3,
+            "max": 5,
+            "label": "Mild"
+          },
+          {
+            "min": 6,
+            "max": 8,
+            "label": "Moderate"
+          },
+          {
+            "min": 9,
+            "max": 12,
+            "label": "Severe"
+          }
+        ],
+        "question_count": 4
+      }
+    ]
+  }
+]

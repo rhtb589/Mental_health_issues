@@ -1,0 +1,10 @@
+# ===========================================
+# Training-only dependencies (requires CUDA GPU)
+# Inherits all inference deps via -r requirements.txt
+# ===========================================
+
+-r requirements.txt
+
+# --- GPU / Quantization ---
+bitsandbytes>=0.43
+accelerate>=0.30
