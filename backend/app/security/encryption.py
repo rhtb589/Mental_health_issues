@@ -62,22 +62,27 @@ def _is_fernet_key(raw: bytes) -> bool:
 
 
 # Module-level singleton for convenience.
-def _create_encryptor() -> FieldEncryptor:
-    """Create the global encryptor, validating the key is not a placeholder."""
-    raw = settings.field_encryption_key.encode()
-    if not _is_fernet_key(raw) and settings.field_encryption_key in (
-        "CHANGE_ME_ENCRYPTION_KEY",
-        "replace-with-fernet-key",
-    ):
-        raise SystemExit(
-            "MHC_FIELD_ENCRYPTION_KEY is a placeholder. "
-            "Generate a real key: cd backend && python -c "
-            "\"from app.security.encryption import generate_key; print(generate_key())\""
-        )
-    return FieldEncryptor()
+_encryptor: FieldEncryptor | None = None
 
 
-encryptor = _create_encryptor()
+def _get_encryptor() -> FieldEncryptor:
+    """Lazily create the global encryptor on first access.
+
+    This avoids import-time failures when secrets haven't been validated yet.
+    """
+    global _encryptor
+    if _encryptor is None:
+        _encryptor = FieldEncryptor()
+    return _encryptor
+
+
+class _EncryptorProxy:
+    """Proxy that defers encryptor creation until first attribute access."""
+    def __getattr__(self, name: str):
+        return getattr(_get_encryptor(), name)
+
+
+encryptor = _EncryptorProxy()
 
 
 def generate_key() -> str:

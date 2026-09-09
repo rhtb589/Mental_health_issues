@@ -7,6 +7,7 @@ Privacy, Consent, Retention, RBAC & Audit).
 from __future__ import annotations
 
 import os
+import secrets
 from datetime import timedelta
 from pathlib import Path
 
@@ -77,14 +78,33 @@ class Settings(BaseSettings):
         return self.environment == "prod"
 
     def validate_secrets(self) -> None:
-        """Reject placeholder / default secret values at startup."""
-        errors: list[str] = []
-        if self.jwt_secret in ("CHANGE_ME_IN_PROD", "replace-with-long-random-string", ""):
-            errors.append("MHC_JWT_SECRET is not set. Generate one: python -c \"import secrets; print(secrets.token_urlsafe(32))\"")
-        if self.field_encryption_key in ("CHANGE_ME_ENCRYPTION_KEY", "replace-with-fernet-key", ""):
-            errors.append("MHC_FIELD_ENCRYPTION_KEY is not set. Generate one: cd backend && python -c \"from app.security.encryption import generate_key; print(generate_key())\"")
-        if errors:
-            raise SystemExit("\n".join(["Startup failed:"] + errors))
+        """Validate or auto-generate secrets.
+
+        In dev mode, placeholder values are replaced with auto-generated secrets
+        and a warning is printed.  In staging/prod the app refuses to start with
+        placeholder secrets.
+        """
+        _placeholder_jwt = ("CHANGE_ME_IN_PROD", "replace-with-long-random-string", "")
+        _placeholder_enc = ("CHANGE_ME_ENCRYPTION_KEY", "replace-with-fernet-key", "")
+
+        if self.environment == "dev":
+            if self.jwt_secret in _placeholder_jwt:
+                self.jwt_secret = secrets.token_urlsafe(32)
+                print("[WARN] MHC_JWT_SECRET was a placeholder — auto-generated for this session. "
+                      "Set a real value in .env for persistence.")
+            if self.field_encryption_key in _placeholder_enc:
+                from cryptography.fernet import Fernet
+                self.field_encryption_key = Fernet.generate_key().decode()
+                print("[WARN] MHC_FIELD_ENCRYPTION_KEY was a placeholder — auto-generated for this session. "
+                      "Set a real value in .env for persistence.")
+        else:
+            errors: list[str] = []
+            if self.jwt_secret in _placeholder_jwt:
+                errors.append("MHC_JWT_SECRET is not set. Generate one: python -c \"import secrets; print(secrets.token_urlsafe(32))\"")
+            if self.field_encryption_key in _placeholder_enc:
+                errors.append("MHC_FIELD_ENCRYPTION_KEY is not set. Generate one: cd backend && python -c \"from app.security.encryption import generate_key; print(generate_key())\"")
+            if errors:
+                raise SystemExit("\n".join(["Startup failed:"] + errors))
 
 
 @lru_cache
